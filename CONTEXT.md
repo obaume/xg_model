@@ -22,6 +22,18 @@ _Avoid_: Shot attempt (that includes blocked shots), unblocked attempt
 The play-by-play event immediately before a Fenwick shot within the same game period, used to describe how the shot came about.
 _Avoid_: Last event, previous play
 
+**Strength state**:
+The manpower situation at a shot, from the shooter's side: how many skaters each team has on the ice and whether the opponent's net is empty.
+_Avoid_: Game state, situation, manpower
+
+**Extra attacker**:
+A skater on the ice in place of their team's pulled goalie; counts as a skater in the strength state.
+_Avoid_: Sixth attacker
+
+**Excluded shot**:
+A Fenwick shot that no strength-state model scores (e.g. a penalty shot, or one missing coordinates); it gets no xG and carries the reason it was excluded.
+_Avoid_: Dropped shot, filtered shot
+
 ### Models and outputs
 
 **Expected goals (xG)**:
@@ -33,8 +45,12 @@ Expected goals for a game the league has not yet made official; it can still cha
 _Avoid_: Live xG, partial xG
 
 **Strength-state model**:
-One of four separate models, each scoring only the Fenwick shots from one situation: even strength, power play, shorthanded, or empty net.
+One of four separate models, each scoring the Fenwick shots from one group of strength states: empty net takes every shot at an empty net; the rest are split by skater difference into even strength, power play and shorthanded.
 _Avoid_: Sub-model, situational model
+
+**Training window**:
+The run of most recent complete seasons a strength-state model is trained on; its length is set per model.
+_Avoid_: Lookback, training range
 
 ### Validation
 
